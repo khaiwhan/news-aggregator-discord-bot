@@ -1,0 +1,19 @@
+{
+    "name": "news-aggregator-discord-bot",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "description": "",
+    "dependencies": {
+        "@google/generative-ai": "^0.24.0",
+        "axios": "^1.8.4",
+        "dotenv": "^16.5.0",
+        "franc": "^6.2.0",
+        "node-cron": "^3.0.3",
+        "pg-promise": "^11.13.0",
+        "rss-parser": "^3.13.0"
+    }
+}
