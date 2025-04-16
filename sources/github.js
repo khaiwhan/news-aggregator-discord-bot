@@ -4,9 +4,12 @@ const { fetchWithRetry } = require("../utils/libs")
 
 let GITHUB_REPOS = [];
 
-let FEEDS = []
+let FEEDS = [];
 
 async function fetch_data() {
+  GITHUB_REPOS = [];
+  FEEDS = [];
+
   (await query_async(`select keyword from config where platform = 'github'`)).forEach(f => {
     (f["keyword"]["GITHUB_REPOS"] || []).forEach(t => GITHUB_REPOS.push(t));
   })

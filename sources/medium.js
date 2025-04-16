@@ -7,6 +7,10 @@ let FEEDS = [];
 let BAD_WORDS = [];
 
 async function fetch_data() {
+  TAGS = [];
+  FEEDS = [];
+  BAD_WORDS = [];
+
   (await query_async(`select keyword from config where platform = 'medium'`)).forEach(f => {
     (f["keyword"]["TAGS"] || []).forEach(t => TAGS.push(t));
     (f["keyword"]["BAD_WORDS"] || []).forEach(t => BAD_WORDS.push(t));

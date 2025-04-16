@@ -7,6 +7,9 @@ let CHANNELS = [];
 let KEYWORDS = [];
 
 async function fetch_data() {
+  CHANNELS = [];
+  KEYWORDS = [];
+
   (await query_async(`select keyword from config where platform = 'youtube'`)).forEach(f => {
     (f["keyword"]["CHANNELS"] || []).forEach(t => CHANNELS.push(t["id"]));
     (f["keyword"]["KEYWORDS"] || []).forEach(t => KEYWORDS.push(t));

@@ -12,7 +12,8 @@ async function fetchWithRetry(url, delayMs = 60000) {
             const sec = Math.round(delayMs / 1000)
 
             for (let j = 0; j < sec; j++) {
-                process.stdout.write(`\r⚠️ Attempt ${i + 1} failed for ${url}: ${err.message} wait ${j + 1}/${(sec)} seconds`);
+                // process.stdout.write(`\r⚠️ Attempt ${i + 1} failed for ${url}: ${err.message} wait ${j + 1}/${(sec)} seconds`);
+                console.log(`\r⚠️ Attempt ${i + 1} failed for ${url}: ${err.message} wait ${j + 1}/${(sec)} seconds`);
                 await new Promise(resolve => setTimeout(resolve, 1000));
             }
             console.log(`\r⚠️ Attempt ${i + 1} failed for ${url}: ${err.message} wait ${(sec)}/${sec} seconds`);
