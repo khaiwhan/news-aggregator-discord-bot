@@ -20,10 +20,11 @@ const query_first_of_default_async = async (query, parameter = {}) => {
 
 const execute_async = async (query, parameter = {}) => {
     try {
-        await db.one(query, parameter)
+        await db.none(query, parameter)
         return 1
     }
     catch (ex) {
+        console.log(ex)
         return 0
     }
 }

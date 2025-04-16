@@ -1,9 +1,3 @@
--- public.config definition
-
--- Drop table
-
--- DROP TABLE public.config;
-
 CREATE TABLE public.config (
 	id uuid DEFAULT gen_random_uuid() NOT NULL,
 	platform varchar NOT NULL,
@@ -13,16 +7,19 @@ CREATE TABLE public.config (
 	CONSTRAINT config_pkey PRIMARY KEY (id)
 );
 
-
--- public.seen definition
-
--- Drop table
-
--- DROP TABLE public.seen;
-
 CREATE TABLE public.seen (
 	url_id varchar NOT NULL,
 	created_date timestamp DEFAULT now() NOT NULL,
 	title text NULL,
 	CONSTRAINT seen_pkey PRIMARY KEY (url_id)
+);
+
+CREATE TABLE public.logs (
+	id uuid DEFAULT gen_random_uuid() NOT NULL,
+	start_date timestamp NOT NULL,
+	finish_date timestamp NULL,
+	duration numeric NULL,
+	duration_format varchar NULL,
+	status varchar NULL,
+	CONSTRAINT logs_pkey PRIMARY KEY (id)
 );

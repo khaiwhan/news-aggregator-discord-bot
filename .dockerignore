@@ -1,0 +1,8 @@
+node_modules
+.env
+.env.example
+.vscode
+initail_sql_script.sql
+README.md
+.gitignore
+.git
