@@ -1,7 +1,6 @@
-const Parser = require("rss-parser");
 const { franc } = require("franc");
-const parser = new Parser();
 const { query_async } = require("../utils/pg")
+const { fetchWithRetry } = require("../utils/libs")
 
 let TAGS = [];
 let FEEDS = [];
@@ -55,22 +54,6 @@ function formatForDiscord(item) {
 🔗 **Full Article**: [Read More](${url})
     `.trim(),
   };
-}
-
-async function fetchWithRetry(url, retries = 10, delayMs = 61000) {
-  for (let i = 0; i < retries; i++) {
-    try {
-      return await parser.parseURL(url);
-    } catch (err) {
-      console.warn(`⚠️ Attempt ${i + 1} failed for ${url}: ${err.message}`);
-      if (i < retries - 1) {
-        await new Promise(resolve => setTimeout(resolve, delayMs));
-      } else {
-        console.error(`❌ All attempts failed for ${url}`);
-      }
-    }
-  }
-  return { items: [] };
 }
 
 module.exports = {

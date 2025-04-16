@@ -7,18 +7,20 @@ let seens = []
 let job_process = false
 
 async function fetch_sources() {
-  (await query_async(`select platform from config where active = true order by "order"`)).forEach(f => sources.push(require(`./sources/${f["platform"]}`)))
+  sources = [];
+  (await query_async(`select platform from config where active = true order by "order"`)).forEach(f => sources.push(require(`./sources/${f["platform"]}`)));
 }
 
 async function fetch_seen() {
-  (await query_async(`select url_id from seen`)).forEach(f => seens.push(f["url_id"]))
+  seens = [];
+  (await query_async(`select url_id from seen`)).forEach(f => seens.push(f["url_id"]));
 }
 
 async function run() {
-  job_process = true
-  await fetch_sources()
-  await fetch_seen()
-  let seen = []
+  job_process = true;
+  await fetch_sources();
+  await fetch_seen();
+  let seen = [];
 
   for (const source of sources) {
     const items = await source.fetch();
