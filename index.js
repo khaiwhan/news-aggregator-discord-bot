@@ -47,26 +47,26 @@ async function run() {
 
 }
 
-run(); // run when debug
+// run(); // run when debug
 
-// const cron = require('node-cron');
-// console.log("App Started")
-// console.log(process.env.CRON_EXPRESSION)
-// console.log(process.env.TZ)
-// cron.schedule(process.env.CRON_EXPRESSION, async () => {
-//   if (!job_process) {
-//     const start_date = new Date()
-//     const id = randomUUID()
-//     await execute_async("insert into logs(id, start_date, status) values(${id}, ${start_date}, 'processing')", { id, start_date })
-//     console.log("========================================================================================")
-//     console.log("start job at ", start_date)
-//     await run();
-//     const finish_date = new Date()
-//     const duration = finish_date - start_date;
-//     const duration_format = formatDuration(duration)
-//     await execute_async("update logs set finish_date=${finish_date}, duration=${duration}, duration_format=${duration_format}, status='success' where id=${id}", { id, finish_date, duration, duration_format })
-//     console.log("job finish at ", finish_date)
-//     console.log("Duration : ", duration_format)
-//     console.log("========================================================================================")
-//   }
-// });
+const cron = require('node-cron');
+console.log("App Started")
+console.log(process.env.CRON_EXPRESSION)
+console.log(process.env.TZ)
+cron.schedule(process.env.CRON_EXPRESSION, async () => {
+  if (!job_process) {
+    const start_date = new Date()
+    const id = randomUUID()
+    await execute_async("insert into logs(id, start_date, status) values(${id}, ${start_date}, 'processing')", { id, start_date })
+    console.log("========================================================================================")
+    console.log("start job at ", start_date)
+    await run();
+    const finish_date = new Date()
+    const duration = finish_date - start_date;
+    const duration_format = formatDuration(duration)
+    await execute_async("update logs set finish_date=${finish_date}, duration=${duration}, duration_format=${duration_format}, status='success' where id=${id}", { id, finish_date, duration, duration_format })
+    console.log("job finish at ", finish_date)
+    console.log("Duration : ", duration_format)
+    console.log("========================================================================================")
+  }
+});
