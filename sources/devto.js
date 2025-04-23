@@ -32,7 +32,8 @@ function isQualityContent(item) {
   const lowered = (title + " " + desc).toLowerCase();
 
   if (desc.length < minDescLength) return false;
-  if (!isThaiOrEnglish(title + " " + desc)) return false;
+  if (!isThaiOrEnglish(title)) return false;
+  if (!isThaiOrEnglish(desc)) return false;
   if (BAD_WORDS.some((word) => lowered.includes(word))) return false;
 
   return true;

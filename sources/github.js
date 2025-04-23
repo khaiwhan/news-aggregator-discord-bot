@@ -29,7 +29,8 @@ function isQualityContent(item) {
   const title = item.title || "";
   const desc = item.contentSnippet || "";
 
-  if (!isThaiOrEnglish(title + " " + desc)) return false;
+  if (!isThaiOrEnglish(title)) return false;
+  if (!isThaiOrEnglish(desc)) return false;
 
   return true;
 }
